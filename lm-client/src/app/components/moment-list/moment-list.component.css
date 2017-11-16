@@ -1,0 +1,27 @@
+.nickname {
+    min-width: 65px;
+    margin-right: 10px; 
+}
+  
+span.label {
+    padding-top: 0.6em;
+    font-size: 12px;
+    display: block;
+    width: 150px;
+    overflow: hidden;
+    text-align: left;
+    color: #fff;
+  }
+
+a.list-group-item {
+    background-color: #245685;
+    color: #fff;
+}
+  
+.title {
+    font-size: 1.2em;
+}
+
+.badge-info {
+    background-color: #0bc038;
+}

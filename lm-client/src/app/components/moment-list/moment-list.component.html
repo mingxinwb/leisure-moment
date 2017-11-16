@@ -1,3 +1,12 @@
-<p>
-  moment-list works!
-</p>
+<div class="container">
+  <div class="list-group">
+    <a class="list-group-item" *ngFor="let moment of moments" href="#">
+      <span class="pull-left label nickname">
+          {{ moment.nickname }}
+      </span>
+      <strong class="title d-flex justify-content-between align-items-center">{{ moment.title }}</strong>
+      <span class="badge badge-info badge-pill">{{ moment.likes }} Likes</span>
+      <span class="badge badge-info badge-pill">{{ moment.comments }} Moments</span>
+    </a>
+  </div>
+</div>
