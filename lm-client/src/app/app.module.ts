@@ -10,6 +10,7 @@ import { MomentDetailComponent } from './components/moment-detail/moment-detail.
 import { routing } from './app.routes';
 import { NewMomentComponent } from './components/new-moment/new-moment.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { ConversationPanelComponent } from './components/conversation-panel/conversation-panel.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     MomentListComponent,
     MomentDetailComponent,
     NewMomentComponent,
-    NavbarComponent
+    NavbarComponent,
+    ConversationPanelComponent
   ],
   imports: [
     BrowserModule,
