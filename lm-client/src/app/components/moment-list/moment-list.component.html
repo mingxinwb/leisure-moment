@@ -1,4 +1,5 @@
 <div class="container">
+  <app-new-moment></app-new-moment>
   <div class="list-group">
     <a class="list-group-item" *ngFor="let moment of moments" [routerLink]="['/moments', moment.id]">
       <span class="pull-left label nickname">

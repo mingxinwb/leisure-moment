@@ -17,4 +17,11 @@ export class DataService {
     return this.moments.find((moment) => moment.id === id);
   };
 
+  addMoment(moment: Moment) {
+    moment.id = this.moments.length + 1;
+    moment.likes = this.moments.length + 58;
+    moment.comments = this.moments.length + 30;
+    this.moments.push(moment);
+  }
+
 }

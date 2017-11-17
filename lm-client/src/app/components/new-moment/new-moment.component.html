@@ -1,0 +1,30 @@
+<div>
+    <form #formRef="ngForm">
+      <div class="form-group">
+        <label for="momentTitle">Leisure Moment Title</label>
+        <input type="text" class="form-control" id="momentTitle"
+          name="momentTitle" placeholder="Please enter your leisure moment title" required
+          [(ngModel)]="newMoment.title">
+      </div>
+      <div class="form-group">
+        <label for="nickname">Nickname</label>
+        <input type="text" class="form-control" id="nickname"
+          name="nickname" placeholder="Input your nickname" required
+          [(ngModel)]="newMoment.nickname">
+      </div>
+      <div class="form-group">
+          <label for="momentContent">Moment Content</label>
+          <textarea type="text" class="form-control" id="momentContent" 
+            name="momentContent" placeholder="Please enter your leisure moment content" required
+            [(ngModel)]="newMoment.content" rows="3">
+          </textarea> 
+        </div>
+      <div class="row">
+        <div class="col-md-12">
+          <button type="submit" class="btn btn-primary pull-right"
+            (click)="addMoment()">Submit</button>
+        </div>
+      </div>
+      
+    </form>
+  </div>
