@@ -9,13 +9,15 @@ import { MomentListComponent } from './components/moment-list/moment-list.compon
 import { MomentDetailComponent } from './components/moment-detail/moment-detail.component';
 import { routing } from './app.routes';
 import { NewMomentComponent } from './components/new-moment/new-moment.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MomentListComponent,
     MomentDetailComponent,
-    NewMomentComponent
+    NewMomentComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
