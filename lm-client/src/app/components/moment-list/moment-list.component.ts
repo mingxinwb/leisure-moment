@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { DataService } from '../../services/data.service';
 import { Moment } from '../../models/moment.model';
-import { mockMoments } from '../../mock-moments';
 
 
 @Component({
@@ -10,15 +10,16 @@ import { mockMoments } from '../../mock-moments';
   styleUrls: ['./moment-list.component.css']
 })
 export class MomentListComponent implements OnInit {
-  moments: Moment[];
-  constructor() { }
+  moments: Moment[] = [];
+
+  constructor(private dataService: DataService) { }
 
   ngOnInit() {
     this.getMoments();
   }
 
-  getMoments() {
-    this.moments = mockMoments;
+  getMoments(): void {
+    this.moments = this.dataService.getMoments();
   };
 
 }

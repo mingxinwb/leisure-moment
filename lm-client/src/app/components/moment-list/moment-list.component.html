@@ -1,6 +1,6 @@
 <div class="container">
   <div class="list-group">
-    <a class="list-group-item" *ngFor="let moment of moments" href="#">
+    <a class="list-group-item" *ngFor="let moment of moments" [routerLink]="['/moments', moment.id]">
       <span class="pull-left label nickname">
           {{ moment.nickname }}
       </span>
