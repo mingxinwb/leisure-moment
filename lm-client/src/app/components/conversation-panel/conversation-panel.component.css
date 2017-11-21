@@ -12,23 +12,6 @@ html, body {
     background-color: #0bc038;
 }
 
-#loginWrapper {
-    position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    background-color: rgba(5, 5, 5, 0.6);
-    text-align: center;
-    color: #fff;
-    display: black;
-    padding-top: 200px;
-}
-
-#nickWrapper {
-    display: none;
-}
-
 .banner {
     height: 80px;
     width: 100%;

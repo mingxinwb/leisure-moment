@@ -6,6 +6,7 @@ import { Moment } from '../models/moment.model';
 @Injectable()
 export class DataService {
   moments: Moment[] = mockMoments;
+  users: string[] = [];
 
   constructor() { }
 
@@ -22,6 +23,17 @@ export class DataService {
     moment.likes = this.moments.length + 58;
     moment.comments = this.moments.length + 30;
     this.moments.push(moment);
+  }
+
+  addNewName(newUserName) {
+    if (this.users.indexOf(newUserName) > -1) {
+      console.error('nickname existed');
+      return document.getElementById('info').textContent = "nickname is taken, pls pick another one";
+    } else {
+      this.users.push(newUserName);
+      document.getElementById('loginWrapper').style.display = 'none';
+      document.getElementById('userName').textContent = newUserName;
+    }
   }
 
 }

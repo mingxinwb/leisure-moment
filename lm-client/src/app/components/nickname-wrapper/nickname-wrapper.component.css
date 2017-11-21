@@ -1,4 +1,4 @@
-/*#loginWrapper {
+#loginWrapper {
     position: fixed;
     top: 0;
     right: 0;
@@ -12,5 +12,11 @@
 }
 
 #nickWrapper {
-    display: none;
-}*/
+    display: inline-block;
+    width: 200px;
+}
+
+#nicknameInput {
+    vertical-align: middle;
+    
+}

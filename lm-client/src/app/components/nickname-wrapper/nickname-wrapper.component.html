@@ -1,7 +1,13 @@
 <div id="loginWrapper">
-  <p id="info">connecting to server...</p>
-  <div id="nickWrapper">
-      <input id="nicknameInput" type="text" placeholder="nickname" />
-      <button id="loginBtn" class="btn btn-primary">OK</button>
-  </div>
+    <p id="info">connecting to server...</p>
+    <div >
+        <form #formRef="ngForm">
+            <div id="nickWrapper" class="form-group">
+                <input type="text" class="form-control" id="nicknameInput"
+                  name="nicknameInput" placeholder="nickname" required
+                  [(ngModel)]="newMoment.nickname">
+                <button id="loginBtn" type="submit" class="btn btn-primary" (click)="addNewName()">OK</button>
+            </div>
+        </form>    
+    </div>
 </div>
