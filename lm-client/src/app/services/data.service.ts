@@ -18,13 +18,6 @@ export class DataService {
     return this.moments.find((moment) => moment.id === id);
   };
 
-  addMoment(moment: Moment) {
-    moment.id = this.moments.length + 1;
-    moment.likes = this.moments.length + 58;
-    moment.comments = this.moments.length + 30;
-    this.moments.push(moment);
-  }
-
   addNewName(newUserName) {
     if (this.users.indexOf(newUserName) > -1) {
       console.error('nickname existed');
@@ -34,6 +27,14 @@ export class DataService {
       document.getElementById('loginWrapper').style.display = 'none';
       document.getElementById('userName').textContent = newUserName;
     }
+  };
+
+  addMoment(moment: Moment) {
+    moment.id = this.moments.length + 1;
+    moment.likes = this.moments.length + 58;
+    moment.comments = this.moments.length + 30;
+    moment.nickname = document.getElementById('userName').textContent;
+    this.moments.push(moment);
   }
 
 }
