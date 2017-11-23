@@ -3,22 +3,25 @@ const app = express();
 const http = require('http');
 const server = http.createServer(app);
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://user:user@ds119476.mlab.com:19476/leisure-moment', {
-    useMongoClient: true,
-});
+mongoose.connect('mongodb://user:user@ds119476.mlab.com:19476/leisure-moment', {useMongoClient: true});
+const path = require('path');
 
 const restRouter = require('./routes/rest');
+const indexRouter = require('./routes/index');
 // const io = require('socket.io')(server);
 
 // var users = [];
 
 app.use('/api/v1', restRouter);
+app.use('/', indexRouter);
+app.use(express.static(path.join(__dirname, '../public/')));
+app.use(function(req, res) {
+    res.sendFile('index.html', {root: path.join(__dirname, '../public')});
+});
 
-// app.use('/', express.static(__dirname + '/www/'));
-
-// listening on port:3000
-server.listen(3000, () => {
-    console.log('server start and listening on port:3000.');
+// listening on port:5000
+server.listen(5000, () => {
+    console.log('server start and listening on port:5000.');
 });
 
 // io.on('connection', (socket) => {

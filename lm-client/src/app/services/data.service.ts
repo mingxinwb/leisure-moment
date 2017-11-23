@@ -1,23 +1,39 @@
 import { Injectable } from '@angular/core';
+import { Http, Response, Headers, RequestOptions } from '@angular/http';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { Observable } from 'rxjs/Rx';
+import 'rxjs/add/operator/toPromise';
 
-import { mockMoments } from '../mock-moments';
 import { Moment } from '../models/moment.model';
 
 @Injectable()
 export class DataService {
-  moments: Moment[] = mockMoments;
+  private _momentSource = new BehaviorSubject<Moment[]>([]);
   users: string[] = [];
 
-  constructor() { }
+  constructor(private http: Http) { }
 
-  getMoments(): Moment[] {
-    return this.moments;
+  getMoments(): Observable<Moment[]> {
+    this.http.get('api/v1/moments')
+    .toPromise()
+    .then((res: Response) => {
+      this._momentSource.next(res.json());
+    })
+    .catch(this.handleError);
+  return this._momentSource.asObservable();
   };
 
-  getMoment(id: number): Moment {
-    return this.moments.find((moment) => moment.id === id);
+  getMoment(id: number) {
+    return this.http.get(`api/v1/moments/${id}`)
+    .toPromise()
+    .then((res: Response) => {
+      this.getMoments();
+      return res.json();
+    })
+    .catch(this.handleError);
   };
 
+  // TODO connect users to server...
   addNewName(newUserName) {
     if (this.users.indexOf(newUserName) > -1) {
       console.error('nickname existed');
@@ -30,11 +46,26 @@ export class DataService {
   };
 
   addMoment(moment: Moment) {
-    moment.id = this.moments.length + 1;
-    moment.likes = this.moments.length + 58;
-    moment.comments = this.moments.length + 30;
-    moment.nickname = document.getElementById('userName').textContent;
-    this.moments.push(moment);
-  }
+    // moment.id = this.moments.length + 1;
+    // moment.likes = this.moments.length + 58;
+    // moment.comments = this.moments.length + 30;
+    // moment.nickname = document.getElementById('userName').textContent;
+    // this.moments.push(moment);
+    const headers: Headers = new Headers({'content-type': 'application/json'});
+    const requestOptions = new RequestOptions({ headers: headers });   
+
+    return this.http.post('/api/v1/moments', moment, requestOptions)
+      .toPromise()
+      .then((res: Response) => {
+        this.getMoments();
+        return res.json;
+      })
+    .catch(this.handleError)
+  };
+
+  private handleError(error: any): Promise<any> {
+    console.error('An error occured', error);
+    return Promise.reject(error);
+  };
 
 }

@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
-
+import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { ConversationPanelComponent } from './components/conversation-panel/conversation-panel.component';
@@ -26,6 +26,7 @@ import { routing } from './app.routes';
   imports: [
     BrowserModule,
     FormsModule,
+    HttpModule,
     routing
   ],
   providers: [

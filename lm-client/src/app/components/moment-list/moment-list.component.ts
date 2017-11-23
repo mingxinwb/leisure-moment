@@ -19,7 +19,9 @@ export class MomentListComponent implements OnInit {
   }
 
   getMoments(): void {
-    this.moments = this.dataService.getMoments();
+    this.dataService.getMoments()
+        .subscribe(moments => this.moments = moments);
+
   };
 
 }

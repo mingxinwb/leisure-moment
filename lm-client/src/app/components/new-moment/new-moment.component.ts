@@ -26,7 +26,9 @@ export class NewMomentComponent implements OnInit {
   }
 
   addMoment():void {
-    this.dataService.addMoment(this.newMoment);
+    this.newMoment.nickname = document.getElementById('userName').textContent;
+    this.dataService.addMoment(this.newMoment)
+        .catch(error => console.log(error.body));
     this.newMoment = Object.assign({}, DEFAULT_MOMENT);
   };
 
