@@ -3,7 +3,9 @@ const app = express();
 const http = require('http');
 const server = http.createServer(app);
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://user:user@ds119476.mlab.com:19476/leisure-moment');
+mongoose.connect('mongodb://user:user@ds119476.mlab.com:19476/leisure-moment', {
+    useMongoClient: true,
+});
 
 const restRouter = require('./routes/rest');
 // const io = require('socket.io')(server);
