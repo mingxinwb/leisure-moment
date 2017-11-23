@@ -7,8 +7,9 @@
       {{ moment.content }}
     </p>
     <small>@{{ moment.nickname }}</small>
-    <span class="badge badge-info badge-pill">{{ moment.likes }} Likes</span>
-    <span class="badge badge-info badge-pill">{{ moment.comments }} Moments</span>
+    <br />
+    <button class="btn"><i class="fa fa-heart"></i> {{ moment.likes }}</button>
+    <button class="btn"><i class="fa fa-commenting"> {{ moment.comments }}</i></button>
   </div>
   <div class="hidden-xs col-sm-12 col-md-8">
     <app-conversation-panel></app-conversation-panel>

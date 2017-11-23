@@ -18,7 +18,6 @@ export class MomentDetailComponent implements OnInit {
   ngOnInit() {
     this.route.params.subscribe((params: Params) => {
       this.moment = this.dataService.getMoment(+params['id']);
-    })
+    });
   }
-
 }
