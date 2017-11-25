@@ -91,12 +91,14 @@ var AppComponent = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__components_new_moment_new_moment_component__ = __webpack_require__("../../../../../src/app/components/new-moment/new-moment.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__components_nickname_wrapper_nickname_wrapper_component__ = __webpack_require__("../../../../../src/app/components/nickname-wrapper/nickname-wrapper.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__app_routes__ = __webpack_require__("../../../../../src/app/app.routes.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__services_socket_service__ = __webpack_require__("../../../../../src/app/services/socket.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -131,7 +133,8 @@ var AppModule = (function () {
                 __WEBPACK_IMPORTED_MODULE_12__app_routes__["a" /* routing */]
             ],
             providers: [
-                __WEBPACK_IMPORTED_MODULE_6__services_data_service__["a" /* DataService */]
+                __WEBPACK_IMPORTED_MODULE_6__services_data_service__["a" /* DataService */],
+                __WEBPACK_IMPORTED_MODULE_13__services_socket_service__["a" /* SocketService */]
             ],
             bootstrap: [__WEBPACK_IMPORTED_MODULE_4__app_component__["a" /* AppComponent */]]
         })
@@ -344,6 +347,7 @@ module.exports = "<div class=\"container\">\n  <app-new-moment></app-new-moment>
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MomentListComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_data_service__ = __webpack_require__("../../../../../src/app/services/data.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_socket_service__ = __webpack_require__("../../../../../src/app/services/socket.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -355,13 +359,16 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
+
 var MomentListComponent = (function () {
-    function MomentListComponent(dataService) {
+    function MomentListComponent(dataService, socketService) {
         this.dataService = dataService;
+        this.socketService = socketService;
         this.moments = [];
     }
     MomentListComponent.prototype.ngOnInit = function () {
         this.getMoments();
+        this.socketService.init();
     };
     MomentListComponent.prototype.getMoments = function () {
         var _this = this;
@@ -375,7 +382,8 @@ var MomentListComponent = (function () {
             template: __webpack_require__("../../../../../src/app/components/moment-list/moment-list.component.html"),
             styles: [__webpack_require__("../../../../../src/app/components/moment-list/moment-list.component.css")]
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__services_data_service__["a" /* DataService */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__services_data_service__["a" /* DataService */],
+            __WEBPACK_IMPORTED_MODULE_2__services_socket_service__["a" /* SocketService */]])
     ], MomentListComponent);
     return MomentListComponent;
 }());
@@ -701,6 +709,42 @@ var DataService = (function () {
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */]])
     ], DataService);
     return DataService;
+}());
+
+
+
+/***/ }),
+
+/***/ "../../../../../src/app/services/socket.service.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SocketService; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var SocketService = (function () {
+    function SocketService() {
+    }
+    SocketService.prototype.init = function () {
+        this.userSocket = io(window.location.origin, { query: 'message= ' + 'hello world' });
+        this.userSocket.on('message', function (message) {
+            console.log('message received from server: ' + message);
+        });
+    };
+    SocketService = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
+        __metadata("design:paramtypes", [])
+    ], SocketService);
+    return SocketService;
 }());
 
 

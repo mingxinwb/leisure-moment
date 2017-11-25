@@ -12,6 +12,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { NewMomentComponent } from './components/new-moment/new-moment.component';
 import { NicknameWrapperComponent } from './components/nickname-wrapper/nickname-wrapper.component';
 import { routing } from './app.routes';
+import { SocketService } from './services/socket.service';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { routing } from './app.routes';
     routing
   ],
   providers: [
-    DataService
+    DataService,
+    SocketService
   ],
   bootstrap: [AppComponent]
 })
