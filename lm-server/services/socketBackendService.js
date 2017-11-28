@@ -10,8 +10,11 @@ module.exports = function(io) {
                 socket.nickname = nickname;
                 users.push(nickname);
                 socket.emit('loginSuccess', nickname);
-                // io.sockets.emit('system', nickname, users.length, 'login');
             };
+        });
+
+        socket.on('chatConnect', (userNickname) => {
+            io.sockets.emit('system', userNickname, socket.userIndex + 1, 'login');
         });
 
         socket.on('disconnect', () => {
@@ -19,12 +22,6 @@ module.exports = function(io) {
             users.splice(socket.userIndex, 1);
             socket.broadcast.emit('system', socket.nickname, users.length, 'logout');
         });
-
-        socket.on('chatConnect', (username) => {
-            io.sockets.emit('system', username, socket.userIndex + 1, 'login');
-        });
-
-    
     });
 }
 

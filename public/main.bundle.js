@@ -748,15 +748,15 @@ var SocketService = (function () {
     };
     ;
     SocketService.prototype.conversation = function (userNickname) {
-        this._displayNewMsg(userNickname, 'joined', 'red');
+        var _this = this;
         document.getElementById('welcomeName').textContent = 'Hello ' + userNickname;
         this.socket.emit('chatConnect', userNickname);
         this.socket.on('system', function (username, userCount, type) {
             var msg = username + (type == 'login' ? ' joined' : ' left');
-            var p = document.createElement('p');
-            p.textContent = msg;
-            // this._displayNewMsg('system', msg, 'red');
-            document.getElementById('historyMsg').appendChild(p);
+            // var p = document.createElement('p');
+            // p.textContent = msg;
+            _this._displayNewMsg('system', msg, 'red');
+            // document.getElementById('historyMsg').appendChild(p);
             document.getElementById('status').textContent = userCount + (userCount > 1 ? ' users' : ' user') + ' online';
         });
     };
