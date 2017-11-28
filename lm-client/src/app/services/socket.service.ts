@@ -50,7 +50,6 @@ export class SocketService {
     var msgToDisplay = document.createElement('p');
     var date = new Date().toTimeString().substr(0, 8);
     // var msg = Chat.prototype._showEmoji(msg);
-
     msgToDisplay.style.color = color || '#000';
     msgToDisplay.innerHTML = user + '<span class="timespan">(' + date + '): </span>' + msg;
     container.appendChild(msgToDisplay);

@@ -202,7 +202,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/conversation-panel/conversation-panel.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"wrapper\">\n  <div class=\"banner\">\n      <h1 id=\"welcomeName\">Let's Conversation</h1>\n      <span id=\"status\"></span>\n  </div>\n  <div class=\"mainDisplay\">\n    <div id=\"historyMsg\"></div>\n    <div class=\"usersList\">\n        <h4 class=\"usersTitle\">Online Members</h4>\n        <div id=\"participantList\" class=\"list-group\">\n            <a class=\"list-group-item\" *ngFor=\"let participant of participants\">\n                <span>{{ participant.value }}</span>\n            </a>\n        </div>\n    </div>\n  </div>\n  <div class=\"controls\">\n      <div class=\"items\">\n          <input id=\"colorStyle\" type=\"color\" placeholder=\"#000000\" title=\"font color\" />\n          <input id=\"emoji\" style=\"color:black\" type=\"button\" value=\"emoji\" title=\"emoji\" />\n          <label for=\"sendImage\" class=\"imageLabel\">\n              <input type=\"button\" style=\"color:black\" value=\"image\" />\n              <input id=\"sendImage\" type=\"file\" value=\"image\" />\n          </label>\n          <input id=\"clearBtn\" style=\"color:black\" type=\"button\" value=\"clear\" title=\"clear screen\" />\n      </div>\n      <textarea id=\"messageInput\" placeholder=\"enter to send\"></textarea>\n      <input id=\"sendBtn\" type=\"button\" class=\"btn btn-primary\" value=\"SEND\" />\n      <div id=\"emojiWrapper\"></div>\n  </div>\n</div>\n"
+module.exports = "<div class=\"wrapper\">\n  <div class=\"banner\">\n      <h1 id=\"welcomeName\">Let's Conversation</h1>\n      <span id=\"status\"></span>\n  </div>\n  <div class=\"mainDisplay\">\n    <div id=\"historyMsg\"></div>\n    <div class=\"usersList\">\n        <h4 class=\"usersTitle\">Online Members</h4>\n        <div id=\"participantList\" class=\"list-group\">\n            <a class=\"list-group-item\" *ngFor=\"let moment of moments\">\n                <span>{{ moment.nickname }}</span>\n            </a>\n        </div>\n    </div>\n  </div>\n  <div class=\"controls\">\n      <div class=\"items\">\n          <input id=\"colorStyle\" type=\"color\" placeholder=\"#000000\" title=\"font color\" />\n          <input id=\"emoji\" style=\"color:black\" type=\"button\" value=\"emoji\" title=\"emoji\" />\n          <label for=\"sendImage\" class=\"imageLabel\">\n              <input type=\"button\" style=\"color:black\" value=\"image\" />\n              <input id=\"sendImage\" type=\"file\" value=\"image\" />\n          </label>\n          <input id=\"clearBtn\" style=\"color:black\" type=\"button\" value=\"clear\" title=\"clear screen\" />\n      </div>\n      <textarea id=\"messageInput\" placeholder=\"enter to send\"></textarea>\n      <input id=\"sendBtn\" type=\"button\" class=\"btn btn-primary\" value=\"SEND\" />\n      <div id=\"emojiWrapper\"></div>\n  </div>\n</div>\n"
 
 /***/ }),
 
@@ -224,17 +224,17 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
+var users = [];
 var ConversationPanelComponent = (function () {
     function ConversationPanelComponent(socketService) {
         this.socketService = socketService;
         this.userName = document.getElementById('userName').textContent;
     }
     ConversationPanelComponent.prototype.ngOnInit = function () {
-        var _this = this;
         this.socketService.conversation(this.userName);
-        this.socketService.socket.on('usersList', function (users) {
-            console.log(JSON.stringify(users));
-            _this.participants = [JSON.stringify(users)];
+        this.socketService.socket.on('usersList', function (data) {
+            console.log(data);
+            users = data;
         });
     };
     ;
