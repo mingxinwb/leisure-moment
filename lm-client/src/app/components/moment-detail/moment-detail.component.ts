@@ -11,6 +11,7 @@ import { Moment } from '../../models/moment.model';
 })
 export class MomentDetailComponent implements OnInit {
   moment: Moment;
+
   constructor(
     private route: ActivatedRoute,
     private dataService: DataService) { }

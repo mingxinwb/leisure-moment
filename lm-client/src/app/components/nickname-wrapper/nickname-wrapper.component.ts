@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
-import { DataService } from '../../services/data.service';
 import { Moment } from '../../models/moment.model';
+import { SocketService } from '../../services/socket.service';
 
 const DEFAULT_MOMENT: Moment = Object.freeze({
   id: 0,
@@ -20,14 +20,15 @@ const DEFAULT_MOMENT: Moment = Object.freeze({
 export class NicknameWrapperComponent implements OnInit {
   newMoment: Moment = Object.assign({}, DEFAULT_MOMENT);
 
-  constructor(private dataService: DataService) { }
+  constructor(private socketService: SocketService) { }
 
   ngOnInit() {
+    // this.socketService.checkname();
   }
 
   addNewName(): void {
     if (this.newMoment.nickname.trim().length !=0) {
-      this.dataService.addNewName(this.newMoment.nickname);
+      this.socketService.addNewName(this.newMoment.nickname);
       this.newMoment = Object.assign({}, DEFAULT_MOMENT);
     } else {
       document.getElementById('nicknameInput').focus;

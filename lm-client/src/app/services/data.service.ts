@@ -9,7 +9,6 @@ import { Moment } from '../models/moment.model';
 @Injectable()
 export class DataService {
   private _momentSource = new BehaviorSubject<Moment[]>([]);
-  users: string[] = [];
 
   constructor(private http: Http) { }
 
@@ -31,18 +30,6 @@ export class DataService {
       return res.json();
     })
     .catch(this.handleError);
-  };
-
-  // TODO connect users to server...
-  addNewName(newUserName) {
-    if (this.users.indexOf(newUserName) > -1) {
-      console.error('nickname existed');
-      return document.getElementById('info').textContent = "nickname is taken, pls pick another one";
-    } else {
-      this.users.push(newUserName);
-      document.getElementById('loginWrapper').style.display = 'none';
-      document.getElementById('userName').textContent = newUserName;
-    }
   };
 
   addMoment(moment: Moment) {

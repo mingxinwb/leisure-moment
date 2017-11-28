@@ -202,7 +202,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/conversation-panel/conversation-panel.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"wrapper\">\n  <div class=\"banner\">\n      <h1>Let's Conversation</h1>\n      <span id=\"status\"></span>\n  </div>\n  <div id=\"historyMsg\">\n  </div>\n  <div class=\"controls\">\n      <div class=\"items\">\n          <input id=\"colorStyle\" type=\"color\" placeholder=\"#000000\" title=\"font color\" />\n          <input id=\"emoji\" style=\"color:black\" type=\"button\" value=\"emoji\" title=\"emoji\" />\n          <label for=\"sendImage\" class=\"imageLabel\">\n              <input type=\"button\" style=\"color:black\" value=\"image\" />\n              <input id=\"sendImage\" type=\"file\" value=\"image\" />\n          </label>\n          <input id=\"clearBtn\" style=\"color:black\" type=\"button\" value=\"clear\" title=\"clear screen\" />\n      </div>\n      <textarea id=\"messageInput\" placeholder=\"enter to send\"></textarea>\n      <input id=\"sendBtn\" type=\"button\" class=\"btn btn-primary\" value=\"SEND\" />\n      <div id=\"emojiWrapper\"></div>\n  </div>\n</div>\n"
+module.exports = "<div class=\"wrapper\">\n  <div class=\"banner\">\n      <h1 id=\"welcomeName\">Let's Conversation</h1>\n      <span id=\"status\"></span>\n  </div>\n  <div id=\"historyMsg\">\n  </div>\n  <div class=\"controls\">\n      <div class=\"items\">\n          <input id=\"colorStyle\" type=\"color\" placeholder=\"#000000\" title=\"font color\" />\n          <input id=\"emoji\" style=\"color:black\" type=\"button\" value=\"emoji\" title=\"emoji\" />\n          <label for=\"sendImage\" class=\"imageLabel\">\n              <input type=\"button\" style=\"color:black\" value=\"image\" />\n              <input id=\"sendImage\" type=\"file\" value=\"image\" />\n          </label>\n          <input id=\"clearBtn\" style=\"color:black\" type=\"button\" value=\"clear\" title=\"clear screen\" />\n      </div>\n      <textarea id=\"messageInput\" placeholder=\"enter to send\"></textarea>\n      <input id=\"sendBtn\" type=\"button\" class=\"btn btn-primary\" value=\"SEND\" />\n      <div id=\"emojiWrapper\"></div>\n  </div>\n</div>\n"
 
 /***/ }),
 
@@ -212,6 +212,7 @@ module.exports = "<div class=\"wrapper\">\n  <div class=\"banner\">\n      <h1>L
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ConversationPanelComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_socket_service__ = __webpack_require__("../../../../../src/app/services/socket.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -222,10 +223,14 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
+
 var ConversationPanelComponent = (function () {
-    function ConversationPanelComponent() {
+    function ConversationPanelComponent(socketService) {
+        this.socketService = socketService;
+        this.userName = document.getElementById('userName').textContent;
     }
     ConversationPanelComponent.prototype.ngOnInit = function () {
+        this.socketService.conversation(this.userName);
     };
     ConversationPanelComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
@@ -233,7 +238,7 @@ var ConversationPanelComponent = (function () {
             template: __webpack_require__("../../../../../src/app/components/conversation-panel/conversation-panel.component.html"),
             styles: [__webpack_require__("../../../../../src/app/components/conversation-panel/conversation-panel.component.css")]
         }),
-        __metadata("design:paramtypes", [])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__services_socket_service__["a" /* SocketService */]])
     ], ConversationPanelComponent);
     return ConversationPanelComponent;
 }());
@@ -400,7 +405,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, ".title {\n    font-size: 1.2em;\n  }\n\n.headmargin {\n    margin-left: 350px;\n}\n\n.signupmargin {\n    margin-right: 350px;\n}\n", ""]);
+exports.push([module.i, ".title {\n    font-size: 1.2em;\n  }\n\n/* .headmargin {\n    margin-left: 350px;\n}\n\n.signupmargin {\n    margin-right: 350px;\n} */\n", ""]);
 
 // exports
 
@@ -542,7 +547,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "#loginWrapper {\n    position: fixed;\n    top: 0;\n    right: 0;\n    bottom: 0;\n    left: 0;\n    background-color: rgba(5, 5, 5, 0.6);\n    text-align: center;\n    color: #fff;\n    display: black;\n    padding-top: 200px;\n}\n\n#nickWrapper {\n    display: inline-block;\n    width: 200px;\n}\n\n#nicknameInput {\n    vertical-align: middle;\n    \n}", ""]);
+exports.push([module.i, "#loginWrapper {\n    position: fixed;\n    top: 0;\n    right: 0;\n    bottom: 0;\n    left: 0;\n    background-color: rgba(5, 5, 5, 0.6);\n    text-align: center;\n    color: #fff;\n    display: black;\n    padding-top: 200px;\n}\n\n#nickWrapper {\n    display: none;\n    width: 200px;\n}\n\n#nicknameInput {\n    vertical-align: middle;\n    \n}", ""]);
 
 // exports
 
@@ -565,7 +570,7 @@ module.exports = "<div id=\"loginWrapper\">\n    <p id=\"info\">connecting to se
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return NicknameWrapperComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_data_service__ = __webpack_require__("../../../../../src/app/services/data.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_socket_service__ = __webpack_require__("../../../../../src/app/services/socket.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -586,15 +591,16 @@ var DEFAULT_MOMENT = Object.freeze({
     comments: 0
 });
 var NicknameWrapperComponent = (function () {
-    function NicknameWrapperComponent(dataService) {
-        this.dataService = dataService;
+    function NicknameWrapperComponent(socketService) {
+        this.socketService = socketService;
         this.newMoment = Object.assign({}, DEFAULT_MOMENT);
     }
     NicknameWrapperComponent.prototype.ngOnInit = function () {
+        // this.socketService.checkname();
     };
     NicknameWrapperComponent.prototype.addNewName = function () {
         if (this.newMoment.nickname.trim().length != 0) {
-            this.dataService.addNewName(this.newMoment.nickname);
+            this.socketService.addNewName(this.newMoment.nickname);
             this.newMoment = Object.assign({}, DEFAULT_MOMENT);
         }
         else {
@@ -608,7 +614,7 @@ var NicknameWrapperComponent = (function () {
             template: __webpack_require__("../../../../../src/app/components/nickname-wrapper/nickname-wrapper.component.html"),
             styles: [__webpack_require__("../../../../../src/app/components/nickname-wrapper/nickname-wrapper.component.css")]
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__services_data_service__["a" /* DataService */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__services_socket_service__["a" /* SocketService */]])
     ], NicknameWrapperComponent);
     return NicknameWrapperComponent;
 }());
@@ -644,7 +650,6 @@ var DataService = (function () {
     function DataService(http) {
         this.http = http;
         this._momentSource = new __WEBPACK_IMPORTED_MODULE_2_rxjs_BehaviorSubject__["a" /* BehaviorSubject */]([]);
-        this.users = [];
     }
     DataService.prototype.getMoments = function () {
         var _this = this;
@@ -666,19 +671,6 @@ var DataService = (function () {
             return res.json();
         })
             .catch(this.handleError);
-    };
-    ;
-    // TODO connect users to server...
-    DataService.prototype.addNewName = function (newUserName) {
-        if (this.users.indexOf(newUserName) > -1) {
-            console.error('nickname existed');
-            return document.getElementById('info').textContent = "nickname is taken, pls pick another one";
-        }
-        else {
-            this.users.push(newUserName);
-            document.getElementById('loginWrapper').style.display = 'none';
-            document.getElementById('userName').textContent = newUserName;
-        }
     };
     ;
     DataService.prototype.addMoment = function (moment) {
@@ -735,11 +727,50 @@ var SocketService = (function () {
     function SocketService() {
     }
     SocketService.prototype.init = function () {
-        this.userSocket = io(window.location.origin, { query: 'message= ' + 'hello world' });
-        this.userSocket.on('message', function (message) {
-            console.log('message received from server: ' + message);
+        this.socket = io.connect();
+        this.socket.on('connect', function () {
+            console.log('client connected to server now.');
+            document.getElementById('info').textContent = 'get yourself a nickname :)';
+            document.getElementById('nickWrapper').style.display = 'inline-block';
+            document.getElementById('nicknameInput').focus();
+        });
+        this.socket.on('nameExisted', function () {
+            document.getElementById('info').textContent = "oops...nickname is taken, choose another pls";
+        });
+        this.socket.on('loginSuccess', function (nickname) {
+            console.log(nickname + ' has login.');
+            document.getElementById('loginWrapper').style.display = 'none';
+            document.getElementById('userName').textContent = nickname;
         });
     };
+    SocketService.prototype.addNewName = function (nickname) {
+        this.socket.emit('login', nickname);
+    };
+    ;
+    SocketService.prototype.conversation = function (userNickname) {
+        this._displayNewMsg(userNickname, 'joined', 'red');
+        document.getElementById('welcomeName').textContent = 'Hello ' + userNickname;
+        this.socket.emit('chatConnect', userNickname);
+        this.socket.on('system', function (username, userCount, type) {
+            var msg = username + (type == 'login' ? ' joined' : ' left');
+            var p = document.createElement('p');
+            p.textContent = msg;
+            // this._displayNewMsg('system', msg, 'red');
+            document.getElementById('historyMsg').appendChild(p);
+            document.getElementById('status').textContent = userCount + (userCount > 1 ? ' users' : ' user') + ' online';
+        });
+    };
+    SocketService.prototype._displayNewMsg = function (user, msg, color) {
+        var container = document.getElementById('historyMsg');
+        var msgToDisplay = document.createElement('p');
+        var date = new Date().toTimeString().substr(0, 8);
+        // var msg = Chat.prototype._showEmoji(msg);
+        msgToDisplay.style.color = color || '#000';
+        msgToDisplay.innerHTML = user + '<span class="timespan">(' + date + '): </span>' + msg;
+        container.appendChild(msgToDisplay);
+        container.scrollTop = container.scrollHeight;
+    };
+    ;
     SocketService = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
         __metadata("design:paramtypes", [])
