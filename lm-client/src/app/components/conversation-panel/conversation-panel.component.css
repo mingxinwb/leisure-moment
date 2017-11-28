@@ -27,11 +27,43 @@ html, body {
     position: relative;
 }
 
-#historyMsg {
+.mainDisplay {
+    display: flex;
+    position: relative;
+}
+
+.usersList {
+    height: 400px;
+    margin: 0;
+    background-color: #fff;
+    overflow: auto;
+    padding: 2px;
+    border-left: 1px solid black;
+    width: 30%;
+}
+
+.usersTitle {
+    margin: 0;
+    padding: 0;
+    height: 30px;
+    color: black;
+    text-align: center;
+    vertical-align: middle;
+}
+
+#participantList {  
+    height: 370px;
+    margin: 0;
+    padding: 0;
+    
+}
+
+#historyMsg {    
     height: 400px;
     background-color: #fff;
     overflow: auto;
     padding: 2px;
+    width: 70%;
 }
 
 #historyMsg img {

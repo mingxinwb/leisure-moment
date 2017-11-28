@@ -189,7 +189,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "html, body {\n    margin: 0;\n    background-color: #16a9ee;\n    font-family: sans-serif;\n}\n\n.wrapper {\n    width: 600px;\n    height: 640px;\n    padding: 5px;\n    margin: 0 auto;\n    background-color: #5798d4;\n}\n\n.banner {\n    height: 80px;\n    width: 100%;\n}\n\n.banner p {\n    float: left;\n}\n\n.controls {\n    height: 100px;\n    margin: 5px 0;\n    position: relative;\n}\n\n#historyMsg {\n    height: 400px;\n    background-color: #fff;\n    overflow: auto;\n    padding: 2px;\n}\n\n#historyMsg img {\n    max-width: 99%;\n}\n\n.timespan {\n    color: #ddd;\n}\n\n.items {\n    height: 30px;\n}\n\n#colorStyle {\n    width: 50px;\n    border: none;\n    padding: 0;\n}\n\n/* custom the file input */\n.imageLabel {\n    position: relative;\n}\n\n#sendImage {\n    position: absolute;\n    width: 52px;\n    left: 0;\n    opacity: 0;\n    overflow: hidden;\n}\n/* end custom the file input */\n\n#messageInput {\n    width: 520px;\n    max-width: 520px;\n    height: 90px;\n    max-height: 90px;\n}\n\n#sendBtn {\n    width: 65px;\n    height: 96px;\n    float: right;\n}\n\n#emojiWrapper {\n    display: none;\n    width: 500px;\n    bottom: 105px;\n    position: absolute;\n    background-color: #aaa;\n    box-shadow: 0 0 10px #555;\n}\n\n#emojiWrapper img {\n    margin: 2px;\n    padding: 2px;\n    width: 25px;\n    height: 25px;\n}\n\n#emojiWrapper img:hover {\n    background-color: blue;\n}\n\n.emoji {\n    display: inline;\n}\n\nfooter {\n    text-align: center;\n}", ""]);
+exports.push([module.i, "html, body {\n    margin: 0;\n    background-color: #16a9ee;\n    font-family: sans-serif;\n}\n\n.wrapper {\n    width: 600px;\n    height: 640px;\n    padding: 5px;\n    margin: 0 auto;\n    background-color: #5798d4;\n}\n\n.banner {\n    height: 80px;\n    width: 100%;\n}\n\n.banner p {\n    float: left;\n}\n\n.controls {\n    height: 100px;\n    margin: 5px 0;\n    position: relative;\n}\n\n.mainDisplay {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    position: relative;\n}\n\n.usersList {\n    height: 400px;\n    margin: 0;\n    background-color: #fff;\n    overflow: auto;\n    padding: 2px;\n    border-left: 1px solid black;\n    width: 30%;\n}\n\n.usersTitle {\n    margin: 0;\n    padding: 0;\n    height: 30px;\n    color: black;\n    text-align: center;\n    vertical-align: middle;\n}\n\n#participantList {  \n    height: 370px;\n    margin: 0;\n    padding: 0;\n    \n}\n\n#historyMsg {    \n    height: 400px;\n    background-color: #fff;\n    overflow: auto;\n    padding: 2px;\n    width: 70%;\n}\n\n#historyMsg img {\n    max-width: 99%;\n}\n\n.timespan {\n    color: #ddd;\n}\n\n.items {\n    height: 30px;\n}\n\n#colorStyle {\n    width: 50px;\n    border: none;\n    padding: 0;\n}\n\n/* custom the file input */\n.imageLabel {\n    position: relative;\n}\n\n#sendImage {\n    position: absolute;\n    width: 52px;\n    left: 0;\n    opacity: 0;\n    overflow: hidden;\n}\n/* end custom the file input */\n\n#messageInput {\n    width: 520px;\n    max-width: 520px;\n    height: 90px;\n    max-height: 90px;\n}\n\n#sendBtn {\n    width: 65px;\n    height: 96px;\n    float: right;\n}\n\n#emojiWrapper {\n    display: none;\n    width: 500px;\n    bottom: 105px;\n    position: absolute;\n    background-color: #aaa;\n    box-shadow: 0 0 10px #555;\n}\n\n#emojiWrapper img {\n    margin: 2px;\n    padding: 2px;\n    width: 25px;\n    height: 25px;\n}\n\n#emojiWrapper img:hover {\n    background-color: blue;\n}\n\n.emoji {\n    display: inline;\n}\n\nfooter {\n    text-align: center;\n}", ""]);
 
 // exports
 
@@ -202,7 +202,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/conversation-panel/conversation-panel.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"wrapper\">\n  <div class=\"banner\">\n      <h1 id=\"welcomeName\">Let's Conversation</h1>\n      <span id=\"status\"></span>\n  </div>\n  <div id=\"historyMsg\">\n  </div>\n  <div class=\"controls\">\n      <div class=\"items\">\n          <input id=\"colorStyle\" type=\"color\" placeholder=\"#000000\" title=\"font color\" />\n          <input id=\"emoji\" style=\"color:black\" type=\"button\" value=\"emoji\" title=\"emoji\" />\n          <label for=\"sendImage\" class=\"imageLabel\">\n              <input type=\"button\" style=\"color:black\" value=\"image\" />\n              <input id=\"sendImage\" type=\"file\" value=\"image\" />\n          </label>\n          <input id=\"clearBtn\" style=\"color:black\" type=\"button\" value=\"clear\" title=\"clear screen\" />\n      </div>\n      <textarea id=\"messageInput\" placeholder=\"enter to send\"></textarea>\n      <input id=\"sendBtn\" type=\"button\" class=\"btn btn-primary\" value=\"SEND\" />\n      <div id=\"emojiWrapper\"></div>\n  </div>\n</div>\n"
+module.exports = "<div class=\"wrapper\">\n  <div class=\"banner\">\n      <h1 id=\"welcomeName\">Let's Conversation</h1>\n      <span id=\"status\"></span>\n  </div>\n  <div class=\"mainDisplay\">\n    <div id=\"historyMsg\"></div>\n    <div class=\"usersList\">\n        <h4 class=\"usersTitle\">Online Members</h4>\n        <div id=\"participantList\" class=\"list-group\">\n            <a class=\"list-group-item\" *ngFor=\"let participant of participants\">\n                <span>{{ participant.value }}</span>\n            </a>\n        </div>\n    </div>\n  </div>\n  <div class=\"controls\">\n      <div class=\"items\">\n          <input id=\"colorStyle\" type=\"color\" placeholder=\"#000000\" title=\"font color\" />\n          <input id=\"emoji\" style=\"color:black\" type=\"button\" value=\"emoji\" title=\"emoji\" />\n          <label for=\"sendImage\" class=\"imageLabel\">\n              <input type=\"button\" style=\"color:black\" value=\"image\" />\n              <input id=\"sendImage\" type=\"file\" value=\"image\" />\n          </label>\n          <input id=\"clearBtn\" style=\"color:black\" type=\"button\" value=\"clear\" title=\"clear screen\" />\n      </div>\n      <textarea id=\"messageInput\" placeholder=\"enter to send\"></textarea>\n      <input id=\"sendBtn\" type=\"button\" class=\"btn btn-primary\" value=\"SEND\" />\n      <div id=\"emojiWrapper\"></div>\n  </div>\n</div>\n"
 
 /***/ }),
 
@@ -230,8 +230,14 @@ var ConversationPanelComponent = (function () {
         this.userName = document.getElementById('userName').textContent;
     }
     ConversationPanelComponent.prototype.ngOnInit = function () {
+        var _this = this;
         this.socketService.conversation(this.userName);
+        this.socketService.socket.on('usersList', function (users) {
+            console.log(JSON.stringify(users));
+            _this.participants = [JSON.stringify(users)];
+        });
     };
+    ;
     ConversationPanelComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
             selector: 'app-conversation-panel',
@@ -675,11 +681,6 @@ var DataService = (function () {
     ;
     DataService.prototype.addMoment = function (moment) {
         var _this = this;
-        // moment.id = this.moments.length + 1;
-        // moment.likes = this.moments.length + 58;
-        // moment.comments = this.moments.length + 30;
-        // moment.nickname = document.getElementById('userName').textContent;
-        // this.moments.push(moment);
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]({ 'content-type': 'application/json' });
         var requestOptions = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* RequestOptions */]({ headers: headers });
         return this.http.post('/api/v1/moments', moment, requestOptions)
@@ -753,10 +754,7 @@ var SocketService = (function () {
         this.socket.emit('chatConnect', userNickname);
         this.socket.on('system', function (username, userCount, type) {
             var msg = username + (type == 'login' ? ' joined' : ' left');
-            // var p = document.createElement('p');
-            // p.textContent = msg;
             _this._displayNewMsg('system', msg, 'red');
-            // document.getElementById('historyMsg').appendChild(p);
             document.getElementById('status').textContent = userCount + (userCount > 1 ? ' users' : ' user') + ' online';
         });
     };

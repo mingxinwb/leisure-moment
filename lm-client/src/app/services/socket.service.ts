@@ -1,10 +1,13 @@
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs/Rx';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 declare var io: any;
 
 @Injectable()
 export class SocketService {
   socket: any;
+  parcitipants: string[];
 
   constructor() { }
 
@@ -37,10 +40,7 @@ export class SocketService {
     this.socket.emit('chatConnect', userNickname);
     this.socket.on('system', (username, userCount, type) => {
       var msg = username + (type == 'login' ? ' joined' : ' left');
-      // var p = document.createElement('p');
-      // p.textContent = msg;
       this._displayNewMsg('system', msg, 'red');
-      // document.getElementById('historyMsg').appendChild(p);
       document.getElementById('status').textContent = userCount  + (userCount > 1 ? ' users' : ' user') + ' online';
     });
   }
@@ -57,9 +57,4 @@ export class SocketService {
     container.scrollTop = container.scrollHeight;
   };
 
-  // checkname() {
-  //   if (document.getElementById('userName').textContent.trim().length !=0) {
-  //     document.getElementById('loginWrapper').style.display = 'none';
-  //   }
-  // }
 }

@@ -33,11 +33,6 @@ export class DataService {
   };
 
   addMoment(moment: Moment) {
-    // moment.id = this.moments.length + 1;
-    // moment.likes = this.moments.length + 58;
-    // moment.comments = this.moments.length + 30;
-    // moment.nickname = document.getElementById('userName').textContent;
-    // this.moments.push(moment);
     const headers: Headers = new Headers({'content-type': 'application/json'});
     const requestOptions = new RequestOptions({ headers: headers });   
 

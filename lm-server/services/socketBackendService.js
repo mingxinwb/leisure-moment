@@ -8,6 +8,8 @@ module.exports = function(io) {
                 console.log(nickname + ' connected');
                 socket.userIndex = users.length;
                 socket.nickname = nickname;
+                users.id = users.indexOf(nickname);
+                users.name = socket.nickname;
                 users.push(nickname);
                 socket.emit('loginSuccess', nickname);
             };
@@ -15,6 +17,8 @@ module.exports = function(io) {
 
         socket.on('chatConnect', (userNickname) => {
             io.sockets.emit('system', userNickname, socket.userIndex + 1, 'login');
+            console.log(users);
+            io.sockets.emit('usersList', users);
         });
 
         socket.on('disconnect', () => {

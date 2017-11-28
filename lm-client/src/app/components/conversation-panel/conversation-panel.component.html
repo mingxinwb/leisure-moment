@@ -3,7 +3,16 @@
       <h1 id="welcomeName">Let's Conversation</h1>
       <span id="status"></span>
   </div>
-  <div id="historyMsg">
+  <div class="mainDisplay">
+    <div id="historyMsg"></div>
+    <div class="usersList">
+        <h4 class="usersTitle">Online Members</h4>
+        <div id="participantList" class="list-group">
+            <a class="list-group-item" *ngFor="let participant of participants">
+                <span>{{ participant.value }}</span>
+            </a>
+        </div>
+    </div>
   </div>
   <div class="controls">
       <div class="items">
